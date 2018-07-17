@@ -5,23 +5,23 @@
   },
   "3bc279cc-8858-11e8-9a94-a6cf71072f73": {
     "type": "Screen",
-    "value": "Where"
+    "value": "Why"
   },
   "3bc28598-8858-11e8-9a94-a6cf71072f73": {
     "type": "Screen",
-    "value": "Where"
+    "value": "What is your name"
   },
   "3bc29d3a-8858-11e8-9a94-a6cf71072f73": {
-    "type": "Screen",
-    "value": "Where"
+    "type": "Field",
+    "value": "Address"
   },
   "3bc2a410-8858-11e8-9a94-a6cf71072f73": {
     "type": "Screen",
-    "value": "Where"
+    "value": "City"
   },
   "3bc2a69a-8858-11e8-9a94-a6cf71072f73": {
     "type": "Screen",
-    "value": "Where"
+    "value": "Loan Purpose"
   },
   "3bc2a8f2-8858-11e8-9a94-a6cf71072f73": {
     "type": "Screen",

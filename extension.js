@@ -1,8 +1,12 @@
 const vscode = require('vscode')
 const fs = require('fs')
+const path = require('path')
 
 function activate (context) {
-  const fieldLookUp = new FieldLookUp()
+  const json = fs.readFileSync(path.resolve(__dirname, 'fieldIds.json'), 'utf8')
+  this.map = JSON.parse(json)
+
+  const fieldLookUp = new FieldLookUp(JSON.parse(json))
   const eventHandlers = new EventHandlers(fieldLookUp)
 
   let aloha = vscode.commands.registerCommand('extension.aloha', () => {
@@ -17,8 +21,9 @@ exports.activate = activate
 
 // manages status bar updates
 class FieldLookUp {
-  constructor () {
+  constructor (map) {
     this.statusBar = vscode.window.createStatusBarItem()
+    this.map = map
   }
 
   lookUpSelectedFieldID () {
@@ -26,8 +31,8 @@ class FieldLookUp {
     const selection = editor.selection
     const text = editor.document.getText(selection)
 
-    if (map[text]) {
-      this.statusBar.text = map[text]
+    if (this.map[text]) {
+      this.statusBar.text = `${this.map[text].type} | ${this.map[text].value}`
       this.statusBar.show()
     } else {
       this.statusBar.hide()
@@ -49,11 +54,4 @@ class EventHandlers {
   setFieldStatsOnStatusBar () {
     this.fieldLookUp.lookUpSelectedFieldID()
   }
-}
-
-// this will be replaced by JSON
-const map = {
-  '123': 'Screen | Loan Purpose',
-  '456': 'Field | Whats you name?',
-  '789': 'seven eight nine 4444'
 }
